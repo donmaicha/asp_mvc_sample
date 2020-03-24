@@ -30,5 +30,10 @@ namespace sample.Controllers
         {
             return HtmlEncoder.Default.Encode($"Hello {name}, Numtimes is: {numTimes}");
         }
+
+        public string Come()
+        {
+            return "こんなこと";
+        }
     }
 }

@@ -4,10 +4,12 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using sample.Models;
 
 namespace sample
 {
@@ -24,6 +26,7 @@ namespace sample
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            services.AddDbContext<ShopDbContext>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -32,6 +35,7 @@ namespace sample
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                app.Run(async (context) => await context.Response.WriteAsync("Hello World!"));
             }
             else
             {
